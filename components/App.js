@@ -20,7 +20,7 @@ export default function App() {
         if(!tenzies)
         {
             let timer = setInterval(() => {
-                setPlay((prevPlay) => ({...prevPlay, time:createTime(startTime)})
+                setPlay((prevPlay) => ({roll:prevPlay.roll, time:createTime(startTime)})
                 )},1000)
             return () => window.clearInterval(timer);
         }
@@ -101,7 +101,7 @@ export default function App() {
                     die :
                     generateNewDie()
             }))
-            setPlay(prev => ({...prev, roll:prev.roll + 1}))
+            setPlay(prev => ({time: prev.time, roll:prev.roll + 1}))
         //if won. reset everything
         } else {
             setTenzies(false)
@@ -113,7 +113,7 @@ export default function App() {
     function holdDice(id) {
         setDice(oldDice => oldDice.map(die => {
             return die.id === id ? 
-                {...die, isHeld: !die.isHeld} :
+                {value: die.value, id:die.id, isHeld: !die.isHeld} :
                 die
         }))
     }
