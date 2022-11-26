@@ -1,4 +1,4 @@
-Working website: https://dynamic-chaja-321c37.netlify.app/
+## Working website: https://dynamic-chaja-321c37.netlify.app/
 This code was made with the help of the Learn react scrimba at https://scrimba.com/learn/learnreact by Bob Ziroll
 The source code was written by me and then mirrored to Bob Ziroll code. This is an extension of his tenzie game where he suggested some functionality to be developed. The functionality includes:
   + put real dots into the die face
