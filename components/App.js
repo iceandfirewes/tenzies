@@ -107,6 +107,7 @@ export default function App() {
             setTenzies(false)
             setDice(allNewDice())
             setStartTime(Date.now())
+            setPlay({roll:0, time:createTime(startTime)})
         }
     }
     //function that get passed down to each die

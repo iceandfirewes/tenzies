@@ -23,12 +23,7 @@ main {
     justify-content: space-around;
     align-items: center;
 }
-.highScore
-{
-    position: absolute;
-    left: 2em;
-    top: 1em;
-}
+
 .title {
     font-size: 40px;
     margin: 0;
@@ -64,6 +59,7 @@ number based die face. it is dot based now
 }
 */
 .roll-dice {
+    margin-top: 1em;
     height: 50px;
     width: 150px;
     border: none;
