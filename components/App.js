@@ -13,6 +13,8 @@ export default function App() {
         const tempRecord = localStorage.getItem("record")
         return tempRecord ? JSON.parse(tempRecord) : {roll:0, time:{minute:"00", second:"00"}}
     })
+    const [timer, setTimer] = React.useState(createTime(startTime))
+    const [roll, setRoll] = React.useState(0)
     //time increment
     React.useEffect(() => 
     {
@@ -20,11 +22,10 @@ export default function App() {
         if(!tenzies)
         {
             let timer = setInterval(() => {
-                setPlay((prevPlay) => ({roll:prevPlay.roll, time:createTime(startTime)})
-                )},1000)
+                setTimer(createTime(startTime))},1000)
             return () => window.clearInterval(timer);
         }
-    },[play])
+    },[timer])
     //win condition checker
     React.useEffect(() => {
         const allHeld = dice.every(die => die.isHeld)
@@ -39,8 +40,8 @@ export default function App() {
         if(tenzies)
         {
             const temp = {
-                roll: play.roll,
-                time: {minute:play.time.minute, second:play.time.second}}
+                roll: roll,
+                time: {minute:timer.minute, second:timer.second}}
             const existing = JSON.parse(localStorage.getItem("record"))
             //compare the two record
             if(existing)
@@ -87,8 +88,8 @@ export default function App() {
     function allNewDice() {
         const newDice = []
         for (let i = 0; i < 10; i++) {
-            newDice.push(generateNewDie())
-            //newDice.push({value:6, isHeld:false, id:nanoid()})
+            //newDice.push(generateNewDie())
+            newDice.push({value:6, isHeld:false, id:nanoid()})
         }
         return newDice
     }
@@ -101,20 +102,21 @@ export default function App() {
                     die :
                     generateNewDie()
             }))
-            setPlay(prev => ({time: prev.time, roll:prev.roll + 1}))
+            setRoll(prev => prev + 1)
         //if won. reset everything
         } else {
             setTenzies(false)
             setDice(allNewDice())
             setStartTime(Date.now())
-            setPlay({roll:0, time:createTime(startTime)})
+            setRoll(0)
+            setTimer(createTime(startTime))
         }
     }
     //function that get passed down to each die
     function holdDice(id) {
         setDice(oldDice => oldDice.map(die => {
             return die.id === id ? 
-                {value: die.value, id:die.id, isHeld: !die.isHeld} :
+                {...die, isHeld: !die.isHeld} :
                 die
         }))
     }
@@ -133,7 +135,7 @@ export default function App() {
             <h3 className="highScore">{`Record:#${record.roll} - ${record.time.minute}:${record.time.second}`}</h3>
             {tenzies && <Confetti />}
             <h1 className="title">Tenzies </h1>
-            <h3 style={{marginTop: "none"}}>{`#${play.roll} ${play.time.minute}:${play.time.second}`}</h3>
+            <h3 style={{marginTop: "none"}}>{`#${roll} ${timer.minute}:${timer.second}`}</h3>
             <p className="instructions">Roll until all dice are the same. 
             Click each die to freeze it at its current value between rolls.</p>
             <div className="dice-container">
