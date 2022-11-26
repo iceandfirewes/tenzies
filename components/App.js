@@ -88,8 +88,8 @@ export default function App() {
     function allNewDice() {
         const newDice = []
         for (let i = 0; i < 10; i++) {
-            //newDice.push(generateNewDie())
-            newDice.push({value:6, isHeld:false, id:nanoid()})
+            newDice.push(generateNewDie())
+            //newDice.push({value:6, isHeld:false, id:nanoid()})
         }
         return newDice
     }
