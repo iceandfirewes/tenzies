@@ -1,19 +1,10 @@
-# codcd4da3935b3010bec95135
-
-Quick start:
-
-```
-$ yarn # npm install
-$ yarn build # npm run build
-````
-
-## Development
-
-Run Webpack in watch-mode to continually compile the JavaScript as you work:
-
-```
-$ yarn watch # npm run watch
-```
+Working website: https://dynamic-chaja-321c37.netlify.app/
+This code was made with the help of the Learn react scrimba at https://scrimba.com/learn/learnreact by Bob Ziroll
+The source code was written by me and then mirrored to Bob Ziroll code. This is an extension of his tenzie game where he suggested some functionality to be developed. The functionality includes:
+  + put real dots into the die face
+  + track number of roll
+  + track time
+  + save best time to local storage
 
 ## About Scrimba
 
